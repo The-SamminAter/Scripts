@@ -21,33 +21,67 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-f2-45f">
-                                <rect key="frame" x="74" y="353" width="267" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Disable Screentime" backgroundImage="Button Background"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gi1-Zv-9x5">
-                                <rect key="frame" x="74" y="477" width="267" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
-                                <state key="normal" title="Enable Screentime" backgroundImage="Button Background"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Screentime Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6G-dL-wGo">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Screentime Manager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6G-dL-wGo">
                                 <rect key="frame" x="47" y="71" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vka-hk-6uj">
-                                <rect key="frame" x="74" y="604" width="267" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sa3-f2-45f">
+                                <rect key="frame" x="74" y="353" width="267" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="63" id="sfl-5k-s32"/>
+                                    <constraint firstAttribute="width" constant="267" id="ymH-1A-DaA"/>
+                                    <constraint firstAttribute="width" secondItem="Sa3-f2-45f" secondAttribute="height" multiplier="89:21" id="yrk-3w-oXf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Disable Screentime" backgroundImage="Button Background"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gi1-Zv-9x5">
+                                <rect key="frame" x="74" y="477" width="267" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Gi1-Zv-9x5" secondAttribute="height" multiplier="89:21" id="fra-6x-Xy4"/>
+                                    <constraint firstAttribute="width" secondItem="Gi1-Zv-9x5" secondAttribute="height" multiplier="89:21" id="s7P-Hg-Otq"/>
+                                    <constraint firstAttribute="width" constant="267" id="tI3-bJ-FNO"/>
+                                    <constraint firstAttribute="height" constant="63" id="xjY-ye-Geq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Enable Screentime" backgroundImage="Button Background"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vka-hk-6uj">
+                                <rect key="frame" x="74" y="601" width="267" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vka-hk-6uj" secondAttribute="height" multiplier="89:21" id="Cx7-hc-XiL"/>
+                                    <constraint firstAttribute="width" constant="267" id="jXe-LK-fCh"/>
+                                    <constraint firstAttribute="height" constant="63" id="tZB-yd-tfd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <state key="normal" title="Check Status" backgroundImage="Button Background3"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EVA-1t-Ddp">
+                                <rect key="frame" x="74" y="725" width="267" height="63"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="267" id="H2h-js-k4j"/>
+                                    <constraint firstAttribute="width" secondItem="EVA-1t-Ddp" secondAttribute="height" multiplier="89:21" id="U8h-fD-IPf"/>
+                                    <constraint firstAttribute="height" constant="63" id="que-xD-yRi"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="Exit App" backgroundImage="Button Background2"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="vka-hk-6uj" secondAttribute="trailing" constant="73" id="0P5-ac-yPD"/>
+                            <constraint firstItem="vka-hk-6uj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="74" id="0Wa-47-L8r"/>
+                            <constraint firstItem="EVA-1t-Ddp" firstAttribute="top" secondItem="vka-hk-6uj" secondAttribute="bottom" constant="61" id="72c-Zs-Htc"/>
+                            <constraint firstItem="Gi1-Zv-9x5" firstAttribute="top" secondItem="Sa3-f2-45f" secondAttribute="bottom" constant="61" id="8oE-St-9Od"/>
+                            <constraint firstItem="EVA-1t-Ddp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="74" id="GDG-rF-BbP"/>
+                            <constraint firstItem="vka-hk-6uj" firstAttribute="top" secondItem="Gi1-Zv-9x5" secondAttribute="bottom" constant="61" id="NvZ-3v-aFe"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="EVA-1t-Ddp" secondAttribute="bottom" constant="74" id="THT-kY-Va0"/>
+                            <constraint firstItem="Gi1-Zv-9x5" firstAttribute="top" secondItem="Sa3-f2-45f" secondAttribute="bottom" constant="61" id="o6W-3h-zBx"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="EVA-1t-Ddp" secondAttribute="trailing" constant="73" id="v83-55-bqU"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -59,6 +93,7 @@
     <resources>
         <image name="Button Background" width="568" height="129"/>
         <image name="Button Background2" width="568" height="129"/>
+        <image name="Button Background3" width="568" height="129"/>
     </resources>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>
