@@ -2,12 +2,13 @@
 SCTP=/var/mobile/Library/Preferences/com.apple.ScreenTimeAgent.plist
 echo "Checking if screentime is enabled"
 sleep 1
-if [ -f $SCTP ];
+if [ -f $SCTP ]
 then
     echo "Screentime is enabled, disabling now"
     rm $SCTP
     sleep 1
-    if [ ! -f $SCTP ];
+    if [ ! -f $SCTP ]
+    then
         echo "Screentime disabled succesfully"
         sleep 1
         echo "Respringing in 5 seconds"
@@ -30,3 +31,4 @@ else
     echo "Screentime isn't enabled"
     echo "Therefore, it can't be disabled"
 fi
+exit 0
