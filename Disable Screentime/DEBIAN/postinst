@@ -22,7 +22,13 @@ then
         echo "Respringing in 1 second"
         sleep 1
         echo "Respringing"
-        killall ScreenTimeAgent; killall homed; ldrestart
+        killall ScreenTimeAgent
+        if [ -f /.installed_unc0ver ]
+        then
+            ldrestart
+        else
+            killall backboardd
+        fi
     else
         echo "Screentime wasn't disabled succesfully"
         echo "Please try again (by re-installing this package)"
