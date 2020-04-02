@@ -1340,5 +1340,3 @@ def mv_88():
    pick_beeper()
    88()
    put_beeper
-
-
