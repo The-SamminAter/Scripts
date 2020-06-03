@@ -1,11 +1,34 @@
 #Pseudo-bash; because why not?
 #I don't know if Karel can use variables, or how
 #So there are no variables in this entire thing
+#Also, this is really only useful for 8x8 Karel layouts
+#because I didn't think of other sizes when maiking this,
+#and there's no way I'm ever gonna add to this.
 
 def main():
 #Put pseudo-commands here:
    
+#COMMANDS:
 
+#cd
+#usage: cd_xy()
+#sets the dir, or in this case current xy
+
+#cp
+#usage: cp_xy()
+#places a beeper on xy
+
+#rm
+#usage: rm_xy()
+#picks up a beeper from xy
+
+#rm_rf
+#usage: rm_rf_xy()
+#picks up all of the beepers from xy
+
+#mv
+#usage: mv_xy()
+#moves one (1) beeper from your current dir to xy
 
 #FUNCTIONS (OTHER)
 def mt1():
@@ -27,29 +50,6 @@ def lmr():
    tl()
    move()
    reg()
-
-
-#COMMANDS
-
-#cd
-#usage: cd_xy()
-#sets the dir, or in this case current xy
-
-#cp
-#usage: cp_xy()
-#places a beeper on xy
-
-#rm
-#usage: rm_xy()
-#picks up a beeper from xy
-
-#rm_rf
-#usage: rm_rf_xy()
-#picks up all of the beepers from xy
-
-#mv
-#usage: mv_xy()
-#moves one (1) beeper from your current dir to xy
 
 
 #ORIENTATION
