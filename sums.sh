@@ -3,7 +3,7 @@
 #I made this for my modification of unc0ver, but it has other uses, like for my repo
 #Method for getting only the sums from here: http://stackoverflow.com/questions/1405611/ddg#1405641
 #if [ -z "$file" ]; then
-  read -e -r -p "Please drag and drop the file here, and then press enter: " DEBDIR
+  read -e -r -p "Please drag and drop the file here, and then press enter: " DEBDIR;
 #else
 #  DEBDIR="$file"
 #fi
