@@ -1,4 +1,4 @@
-﻿; Originally from seobylindsay's script at:
+; Originally from seobylindsay's script at:
 ; https://www.autohotkey.com/boards/viewtopic.php?t=28215
 
 !c::
@@ -58,6 +58,18 @@ return
 send, ^y
 return
 
+!b::
+send, ^b
+return
+
+!i::
+send, ^i
+return
+
+!u::
+send, ^u
+return
+
 !BackSpace::
 send, ^d
 return
@@ -104,4 +116,7 @@ send, ^=
 return
 !-::
 send, ^-
+return
+!r::
+send, ^r
 return
