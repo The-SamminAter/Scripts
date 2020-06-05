@@ -1,4 +1,7 @@
 #!/bin/bash
+
+#This seems to be completely broken, and I can't figure out/don't know why
+
 #This gives you copy-pasteable MD5, SHA1, and SHA256 values
 #I made this for my modification of unc0ver, but it has other uses, like for my repo
 #Method for getting only the sums from here: http://stackoverflow.com/questions/1405611/ddg#1405641
