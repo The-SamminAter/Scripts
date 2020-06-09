@@ -34,6 +34,10 @@ return
 send, ^+n
 return
 
+!t::
+send, ^t
+return
+
 !o::
 send, ^o
 return
