@@ -1,11 +1,18 @@
 #!/bin/bash
 SCTP=/var/mobile/Library/Preferences/com.apple.ScreenTimeAgent.plist
+SCTPBU=/var/mobile/Library/Preferences/com.apple.ScreenTimeAgent.backup.plist
 echo "Checking if screentime is enabled"
 sleep 1
 if [ -f $SCTP ]
 then
     echo "Screentime is enabled, disabling now"
-    rm $SCTP
+    if [ -f $SCTPBU ]
+    then
+        echo "Previous screentime backups found, removing them"
+        rm $SCTPB
+        echo "Previous screentime backup removed"
+    fi
+    mv $SCTP $SCTPBU
     sleep 1
     if [ ! -f $SCTP ]
     then
@@ -23,12 +30,14 @@ then
         sleep 1
         echo "Respringing"
         killall ScreenTimeAgent
-        if [ -f /.installed_unc0ver ]
-        then
-            ldrestart
-        else
-            killall backboardd
-        fi
+        #I think I originally checked for unc0ver because some other jbs didn't work nicely with ldrestart(?)
+        #I don't know if that problem persists with Chimera13/Odyssey, so I'm just removing the condition for the ldrestart:
+        #if [ -f /.installed_unc0ver ]
+        #then
+        ldrestart
+        #else
+        #    killall backboardd
+        #fi
     else
         echo "Screentime wasn't disabled succesfully"
         echo "Please try again (by re-installing this package)"
