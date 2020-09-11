@@ -28,14 +28,12 @@ then
         sleep 1
         echo "Respringing"
         killall ScreenTimeAgent
-        #I think I originally checked for unc0ver because some other jbs didn't work nicely with ldrestart(?)
-        #I don't know if that problem persists with Chimera13/Odyssey, so I'm just removing the condition for the ldrestart:
-        #if [ -f /.installed_unc0ver ]
-        #then
-        ldrestart
-        #else
-        #    killall backboardd
-        #fi
+        if [ -f /.installed_unc0ver ]
+        then
+            ldrestart
+        else
+            launchctl reboot userspace
+        fi
     fi
 else
     echo "The screentime backup was not found"
