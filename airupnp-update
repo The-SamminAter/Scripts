@@ -1,0 +1,35 @@
+#!/bin/bash
+echo "You also may want to run aircast-update"
+if [ ! -f /Library/LaunchAgents/com.airupnp.bridge.plist ]
+then
+	echo "Creating LaunchAgent"
+	touch /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo '<?xml version="1.0" encoding="UTF-8"?>' >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo '<plist version="1.0">' >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "<dict>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <key>Label</key>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <string>com.airupnp.bridge</string>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <key>ProgramArguments</key>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <array>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "        <string>/usr/local/bin/airupnp</string>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "        <string>-Z</string>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "        <string>-l</string>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "        <string>1000:2000</string>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    </array>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <key>RunAtLoad</key>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <key>LaunchOnlyOnce</key>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <key>KeepAlive</key>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "</dict>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	echo "</plist>" >> /Library/LaunchAgents/com.airupnp.bridge.plist
+	chmod 0755 /Library/LaunchAgents/com.airupnp.bridge.plist
+fi
+killall airupnp
+curl https://raw.githubusercontent.com/philippe44/AirConnect/master/bin/airupnp-osx-multi >> /usr/local/bin/airupnp
+sleep 5s
+chmod 0755 /usr/local/bin/airupnp
+echo "Reboot to launch airupnp"
+/usr/local/bin/airupnp -Z -x ~/airupnp.xml -f ~/airupnp.log -l 1000:2000

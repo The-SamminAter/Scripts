@@ -1,0 +1,33 @@
+#!/bin/bash
+echo "You also may want to run airupnp-update"
+if [ ! -f /Library/LaunchAgents/com.aircast.bridge.plist ]
+then
+	echo "Creating LaunchAgent"
+	touch /Library/LaunchAgents/com.aircast.bridge.plist
+	echo '<?xml version="1.0" encoding="UTF-8"?>' >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo '<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">' >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo '<plist version="1.0">' >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "<dict>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <key>Label</key>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <string>com.aircast.bridge</string>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <key>ProgramArguments</key>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <array>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "        <string>/usr/local/bin/aircast</string>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "        <string>-Z</string>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    </array>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <key>RunAtLoad</key>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <key>LaunchOnlyOnce</key>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <key>KeepAlive</key>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "    <true/>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "</dict>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	echo "</plist>" >> /Library/LaunchAgents/com.aircast.bridge.plist
+	chmod 0755 /Library/LaunchAgents/com.aircast.bridge.plist
+fi
+killall aircast
+curl https://raw.githubusercontent.com/philippe44/AirConnect/master/bin/aircast-osx-multi >> /usr/local/bin/aircast
+sleep 5s
+chmod 0755 /usr/local/bin/aircast
+echo "Reboot to launch aircast"
+/usr/local/bin/aircast -Z -x ~/aircast.xml -f ~/aircast.log
