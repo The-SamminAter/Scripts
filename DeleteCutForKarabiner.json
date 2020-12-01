@@ -1,0 +1,32 @@
+{
+    "title": "DeleteCut for macOS/Karabiner",
+    "rules": [
+        {
+            "description": "Change Option+Delete to Shift+Delete",
+            "manipulators": [
+                {
+                    "from": {
+                        "key_code": "delete_or_backspace",
+                        "modifiers": {
+                            "mandatory": [
+                                "left_shift"
+                            ],
+                            "optional": [
+                                "any"
+                            ]
+                        }
+                    },
+                    "to": [
+                        {
+                            "key_code": "delete_or_backspace",
+                            "modifiers": [
+                                "option"
+                            ]
+                        }
+                    ],
+                    "type": "basic"
+                }
+            ]
+        }
+    ]
+}
