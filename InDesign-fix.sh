@@ -8,6 +8,6 @@ sleep 2
 echo "Starting Adobe InDesign"
 #I know that I shouldn't be trying to parse ls, but for this I don't care
 INDIR=$(ls /Applications/ | grep InDesign)
-open "/Applications/${INDIR}/${INDIR}.app
+open "/Applications/${INDIR}/${INDIR}.app"
 #If you want to get more information/feedback from InDesign, use line 13 instead of 11
 #"/Applications/${INDIR}/${INDIR}.app/Contents/MacOS/${INDIR}"
