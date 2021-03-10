@@ -1,6 +1,4 @@
 #!/bin/bash
-
-#Part 1:
 "/Applications/The Unarchiver.app/Contents/MacOS/The Unarchiver" "${1}"
 FP=$(echo "${1%%.deb}")
 rm "${FP}/debian-binary"
