@@ -1,0 +1,8 @@
+Package: com.the-samminater.disablescreentime
+Name: Disable Screentime
+Architecture: iphoneos-arm
+Description: A script that disables screentime.
+Maintainer: The-SamminAter
+Author: The-SamminAter
+Section: Tweaks
+Version: 2.1

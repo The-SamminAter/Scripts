@@ -1,0 +1,47 @@
+#!/bin/bash
+SCTP=/var/mobile/Library/Preferences/com.apple.ScreenTimeAgent.plist
+SCTPBU=/var/mobile/Library/Preferences/com.apple.ScreenTimeAgent.backup.plist
+echo "Checking if screentime is enabled"
+sleep 1
+if [ -f $SCTP ]
+then
+    echo "Screentime is enabled, disabling now"
+    if [ -f $SCTPBU ]
+    then
+        echo "Previous screentime backups found, removing them"
+        rm $SCTPB
+        echo "Previous screentime backup removed"
+    fi
+    mv $SCTP $SCTPBU
+    sleep 1
+    if [ ! -f $SCTP ]
+    then
+        echo "Screentime disabled succesfully"
+        sleep 1
+        echo "Respringing in 5 seconds"
+        sleep 1
+        echo "Respringing in 4 seconds"
+        sleep 1
+        echo "Respringing in 3 seconds"
+        sleep 1
+        echo "Respringing in 2 seconds"
+        sleep 1
+        echo "Respringing in 1 second"
+        sleep 1
+        echo "Respringing"
+        killall ScreenTimeAgent
+        if [ -f /.installed_unc0ver ]
+        then
+            ldrestart
+        else
+            launchctl reboot userspace
+        fi
+    else
+        echo "Screentime wasn't disabled succesfully"
+        echo "Please try again (by re-installing this package)"
+    fi
+else
+    echo "Screentime isn't enabled"
+    echo "Therefore, it can't be disabled"
+fi
+exit 0
