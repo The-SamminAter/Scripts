@@ -26,10 +26,16 @@ if [[ $SCFLAG ]]
 then
     rm "/home/$(whoami)/Desktop/Screenshot.png"
 fi
+#Might as well keep track of all of the uploaded files
 if [[ ! -z "${resource}" ]]
 then
     echo "$1" >> ~/.assx
     echo "${resource}" >> ~/.assx
     echo "${delete}" >> ~/.assx
+fi
+#Allows for every file listed as an argument to be uploaded
+if [[ "$2" ]]
+then
+        $0 "${@:2}"
 fi
 unset fullOut resource delete FILE SCFLAG
