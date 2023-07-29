@@ -6,6 +6,14 @@ then
     mv "$1" "/home/$(whoami)/Desktop/Screenshot.png"
     SCFLAG=true
     FILE="/home/$(whoami)/Desktop/Screenshot.png"
+elif [[ "$(cut -f2 -d'/' <<< $1)" == *":"* ]] || [[ "$(cut -f2 -d'/' <<< $1)" == *","* ]]
+then
+    echo "File name has character(s) that will cause it to fail to upload"
+    exit
+elif [[ "$(cut -f1 -d'/' <<< $1)" == *":"* ]] || [[ "$(cut -f1 -d'/' <<< $1)" == *","* ]]
+then
+    echo "File path has character(s) that will cause it to fail to upload"
+    exit
 else
     FILE="$1"
 fi
