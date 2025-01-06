@@ -23,6 +23,16 @@ cleanup()
 }
 trap "cleanup" EXIT
 
+if [[ -d "${uDir}/.tmp" ]]
+then
+	mkdir "${uDir}/.tmp.2"
+	cd "${uDir}/.tmp.2"
+else
+	mkdir "${uDir}/.tmp"
+	cd "${uDir}/.tmp"
+fi
+
+#There's probably a way to do this (get the version) properly with the GitHub API, but whatever
 if [[ ! $1 ]]
 then
 	#This just gets the latest version, pre-release or not
@@ -77,6 +87,23 @@ then
 		echo "$2 successfully removed for Lutris"
 	fi
 	exit
+#The following is hacked in after I considered proton-update.sh 'complete'. That's why it re-uses code, because I never made this to be perfect, I made it to automate a 5-minute task
+elif [[ "$1" == "-d" || "$1" == "--dxvk" ]]
+then
+	version="$(curl -s -L https://github.com/doitsujin/dxvk/releases/ | grep Version | head -1 | awk -F'>' '{print $2}' | awk -F'<' '{print $1}' | awk -F' ' '{print $2}')"
+	echo "Latest version: ${version}"
+	if [[ ! -d "${uDir}/.wine" ]]
+	then
+		echo "Wineprefix not found for the current user"
+		exit 1
+	fi
+	echo "Starting download..."
+	curl -O -L "https://github.com/doitsujin/dxvk/releases/download/v${version}/dxvk-${version}.tar.gz"
+	tar -xf "dxvk-${version}.tar.gz" -C ./ || exit 1
+	echo "Installing ${version}"
+	mv dxvk-${version}/x32/*.dll "${uDir}/.wine/drive_c/windows/syswow64/"
+	mv dxvk-${version}/x64/*.dll "${uDir}/.wine/drive_c/windows/system32/"
+	exit 0
 elif [[ "$(echo $1 | head -c1)" == "-" ]]
 then
 	echo "$1 is not an understood argument"
@@ -85,19 +112,11 @@ then
 	echo "-a/--alt              Fetches (alternative method) and installs the latest version of Proton-GE"
 	echo "-l/--list             Lists installed versions of Proton-GE"
 	echo "-r/--remove {version} Removes a specified installed version of Proton-GE"
+	echo "-d/--dxvk             Installs the latest version of DXVK, doesn't touch wine overrides"
 	exit
 else
 	version="$1"
 	echo "Version: ${version}"
-fi
-#There's probably a way to do this (get the version) properly with the GitHub API, but whatever
-if [[ -d "${uDir}/.tmp" ]]
-then
-	mkdir "${uDir}/.tmp.2"
-	cd "${uDir}/.tmp.2"
-else
-	mkdir "${uDir}/.tmp"
-	cd "${uDir}/.tmp"
 fi
 
 #Allow older versions to still be used:
