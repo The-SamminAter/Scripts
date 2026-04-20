@@ -4,7 +4,7 @@
 #Retofitted by The_SamminAter
 
 # Default values
-LOGGING_ENABLED=false
+LOGGING_ENABLED=true
 LOG_FILE="gofile_upload.log"
 default_directory="./"
 default_folderid=""
@@ -126,13 +126,14 @@ if [ -z "$os_type" ]; then
     fi
 fi
 
-# Function to get available 'na' server
-#Why specifically na?
-get_na_server() {
+# Function to get available servers
+get_server() {
     local max_attempts=16
     local attempt=1
     local server_info
-    local na_server
+    #local na_server
+    #local eu_server
+    local server
 
     while [ $attempt -le $max_attempts ]; do
         if ! server_info=$(curl -s -X GET 'https://api.gofile.io/servers'); then
@@ -149,23 +150,29 @@ get_na_server() {
             continue
         fi
 
-        na_server=$(echo "$server_info" | jq -r '.data.servers[] | select(.zone == "na") | .name' | head -n 1) #Not sure why we only use na?
-        if [ -n "$na_server" ]; then
-            echo "$na_server"
-            return 0
-        fi
+        #na_server=$(echo "$server_info" | jq -r '.data.servers[] | select(.zone == "na") | .name' | head -n 1) #Not sure why we only use na?
+        #if [ -n "$na_server" ]; then
+        #    echo "$na_server"
+        #    return 0
+        #fi
 
-        eu_server=$(echo "$server_info" | jq -r '.data.servers[] | select(.zone == "eu") | .name' | head -n 1) #Not sure why we only use na?
-        if [ -n "$eu_server" ]; then
-            echo "$eu_server"
+        #eu_server=$(echo "$server_info" | jq -r '.data.servers[] | select(.zone == "eu") | .name' | head -n 1) #Not sure why we only use na?
+        #if [ -n "$eu_server" ]; then
+        #    echo "$eu_server"
+        #    return 0
+        #fi
+
+        server=$(echo "$server_info" | jq -r '.data.servers[].name' | head -n 1) #API has changed, they're all zoned as world now. However, we don't need to care, as long as we can upload
+        if [ -n "$server" ]; then
+            echo "$server"
             return 0
         fi
 
         if [ $attempt -le 5 ]; then
-            echo "No 'na' or 'eu' servers available. Retrying in 60 seconds (attempt $attempt of $max_attempts)..." >&2 | log
+            echo "No servers available or API has changed. Retrying in 60 seconds (attempt $attempt of $max_attempts)..." >&2 | log
             sleep_time=60
         else
-            echo "No 'na' or 'eu' servers available. Retrying in 300 seconds (attempt $attempt of $max_attempts)..." >&2 | log
+            echo "No servers available or API has changed. Retrying in 300 seconds (attempt $attempt of $max_attempts)..." >&2 | log
             sleep_time=300
         fi
         echo "You can force quit the script with Ctrl+C if needed." >&2 | log
@@ -173,7 +180,7 @@ get_na_server() {
         ((attempt++))
     done
 
-    echo "Failed to get an 'na' server after $max_attempts attempts. Exiting." >&2 | log
+    echo "Failed to get a server after $max_attempts attempts. Ensure API responses have not changed. Exiting." >&2 | log
     exit 1
 }
 
@@ -326,7 +333,7 @@ while read -r file; do
     echo "Overall progress: $((uploaded_size * 100 / total_size))% completed" | log
     
     # Get the 'na' server for this upload
-    storenum=$(get_na_server)
+    storenum=$(get_server)
     echo "Using server: $storenum" | log
     
     # GoFile API endpoint
